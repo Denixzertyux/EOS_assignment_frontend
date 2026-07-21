@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-3">
+  <a class="navbar-brand" routerLink="/home">Task App</a>
+  <div class="navbar-nav">
+    <a class="nav-link" routerLink="/home">Home</a>
+    <a class="nav-link" routerLink="/tasks">My Tasks</a>
+  </div>
+  @if (username) {
+    <div class="navbar-nav ms-auto align-items-center">
+      <span class="nav-user-name">{{ username }}</span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  }
+</nav>
+<router-outlet></router-outlet>

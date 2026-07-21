@@ -1,0 +1,58 @@
+<div class="login-container">
+  
+  <div class="toggle-buttons">
+    <button (click)="switchMode('login')" [class.active]="isLoginMode">
+      Login
+    </button>
+    <button (click)="switchMode('register')" [class.active]="!isLoginMode">
+      Register
+    </button>
+  </div>
+
+  @if (isLoginMode) {
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Welcome Back</h2>
+      
+      <div>
+        <label>Email:</label>
+        <input type="email" formControlName="email">
+      </div>
+      
+      <div>
+        <label>Password:</label>
+        <input type="password" formControlName="password">
+      </div>
+      
+      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+    </form>
+  }
+
+  @if (!isLoginMode) {
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h2>Create an Account</h2>
+      
+      <div>
+        <label>Username:</label>
+        <input type="text" formControlName="username">
+      </div>
+      
+      <div>
+        <label>Email:</label>
+        <input type="email" formControlName="email">
+      </div>
+      
+      <div>
+        <label>Password:</label>
+        <input type="password" formControlName="password">
+      </div>
+      
+      <div>
+        <label>Birth Date:</label>
+        <input type="date" formControlName="birthDate">
+      </div>
+      
+      <button type="submit" [disabled]="registerForm.invalid">Sign Up</button>
+    </form>
+  }
+
+</div>

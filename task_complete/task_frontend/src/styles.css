@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #253044;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.navbar {
+  box-shadow: 0 2px 14px rgba(28, 38, 58, 0.16);
+}
+
+.navbar.bg-dark {
+  background-color: #1f2a44 !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.page-panel {
+  background: #ffffff;
+  border: 1px solid #e1e7f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+  padding: 22px;
+}
+
+.page-title {
+  color: #1f2a44;
+  font-weight: 700;
+  margin: 0;
+}
+
+.table {
+  margin-bottom: 0;
+  color: #253044;
+}
+
+.table thead th {
+  background-color: #256d85;
+  border-color: #256d85;
+  color: #ffffff;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.table tbody tr:hover {
+  background-color: #eef7fa;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: #256d85;
+  border-color: #256d85;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #1f5b70;
+  border-color: #1f5b70;
+}
+
+.btn-dark {
+  background-color: #1f2a44;
+  border-color: #1f2a44;
+}
+
+.btn-danger {
+  background-color: #b44b5a;
+  border-color: #b44b5a;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #963b49;
+  border-color: #963b49;
+}

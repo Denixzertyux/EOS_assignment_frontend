@@ -1,0 +1,24 @@
+.nav-user-name {
+  color: #a8c4d4;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-right: 12px;
+  padding: 4px 0;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid #a8c4d4;
+  color: #a8c4d4;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-logout:hover {
+  background: #a8c4d4;
+  color: #1f2a44;
+}

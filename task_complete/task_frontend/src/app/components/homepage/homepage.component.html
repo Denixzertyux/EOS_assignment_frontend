@@ -1,0 +1,117 @@
+<div class="container mt-4">
+  <div class="page-panel">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="page-title">Tasks</h3>
+      <button class="btn btn-dark" (click)="openAddModal()">Add task</button>
+    </div>
+
+    <!-- Search / Filter Bar -->
+    <div class="search-bar">
+      <div class="search-row">
+        <div class="search-field">
+          <label class="search-label" for="filterSubject">Subject</label>
+          <input
+            id="filterSubject"
+            type="text"
+            class="search-input"
+            placeholder="Search by name..."
+            [ngModel]="filterSubject()"
+            (ngModelChange)="filterSubject.set($event)"
+          />
+        </div>
+
+        <div class="search-field">
+          <label class="search-label" for="filterAssignedTo">Assigned To</label>
+          <select
+            id="filterAssignedTo"
+            class="search-input"
+            [ngModel]="filterAssignedTo()"
+            (ngModelChange)="filterAssignedTo.set($event)"
+          >
+            <option value="">All Users</option>
+            @for (user of taskUsernames(); track user) {
+              <option [value]="user">{{ user }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label class="search-label" for="filterStatus">Status</label>
+          <select
+            id="filterStatus"
+            class="search-input"
+            [ngModel]="filterStatus()"
+            (ngModelChange)="filterStatus.set($event)"
+          >
+            <option value="">All Statuses</option>
+            @for (status of taskStatuses(); track status) {
+              <option [value]="status">{{ status }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label class="search-label" for="filterDueDate">Due Date</label>
+          <input
+            id="filterDueDate"
+            type="date"
+            class="search-input"
+            [ngModel]="filterDueDate()"
+            (ngModelChange)="filterDueDate.set($event)"
+          />
+        </div>
+
+        @if (hasActiveFilters) {
+          <div class="search-field search-field-btn">
+            <button class="btn-clear" (click)="clearFilters()">Clear</button>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>TASK NAME</th>
+            <th>DUE DATE</th>
+            <th>STATUS</th>
+            <th>ASSIGNED USER</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (task of filteredTasks(); track task.id) {
+            <tr>
+              <td>{{ task.id }}</td>
+              <td>{{ task.content }}</td>
+              <td>{{ task.dueDate ? task.dueDate.substring(0, 10) : '' }}</td>
+              <td>{{ task.status }}</td>
+              <td>{{ task.username }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm mr-2" (click)="deleteTask(task)">Delete</button>
+                <button class="btn btn-primary btn-sm" (click)="openEditModal(task)">Edit</button>
+              </td>
+            </tr>
+          }
+          @if (filteredTasks().length === 0) {
+            <tr>
+              <td colspan="6" class="no-results">No tasks match your filters.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+@if (showModal) {
+  <app-task-modal
+    [task]="editingTask"
+    [users]="users()"
+    [statuses]="statuses()"
+    (save)="onSaveTask($event)"
+    (close)="closeModal()"
+  ></app-task-modal>
+}
