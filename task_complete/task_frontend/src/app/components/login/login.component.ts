@@ -62,7 +62,14 @@ export class LoginComponent {
             }
         } else {
             if (this.registerForm.valid) {
-                const userPayload = this.registerForm.value;
+                const rawUserPayload = this.registerForm.value;
+
+                // ENCODE email and password to Base64 for the backend
+                const userPayload = {
+                    ...rawUserPayload,
+                    email: btoa(rawUserPayload.email),
+                    password: btoa(rawUserPayload.password)
+                };
                 
                 this.loginService.register(userPayload).subscribe({
                     next: (response) => {
